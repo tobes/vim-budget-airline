@@ -2,6 +2,10 @@
 " MIT License. Copyright (c) Toby Dacre 2015
 " vim: et ts=2 sts=2 sw=2
 
+" check airline extension is loaded
+if !exists('g:airline_loaded')
+  finish
+endif
 
 " check if disabled
 if exists('g:airline#extensions#budgetairline#enabled')
