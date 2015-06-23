@@ -244,6 +244,7 @@ endfunction
 
 function! s:budgetDisable()
   let s:enabled = 0
+  let g:budget_airline_mode = 0
   call s:budgetRemove()
 endfunction
 
