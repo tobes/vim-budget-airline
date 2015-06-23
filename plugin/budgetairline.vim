@@ -173,7 +173,7 @@ function! s:set_airline_sections()
       let l:data = s:sections[section]
       " perform substitutions for raw strings
       for sub in keys(s:subs)
-        let l:data = substitute(l:data, sub, s:subs[sub][g:budget_airline_mode], '')
+        let l:data = substitute(l:data, sub, s:subs[sub][g:budget_airline_mode], 'g')
       endfor
       let g:{'airline_section_' . section} = l:data
     endfor
@@ -193,7 +193,7 @@ endfunction
 function! s:process_section(section)
   let l:section = a:section
   for item in s:substituions
-    let l:section = substitute(l:section, item[0], item[1], '')
+    let l:section = substitute(l:section, item[0], item[1], 'g')
   endfor
   return l:section
 endfunction
