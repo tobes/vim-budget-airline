@@ -28,6 +28,8 @@ function! s:initialize()
         \ 'mode_map',
         \ 'left_sep',
         \ 'right_sep',
+        \ 'right_alt_sep',
+        \ 'left_alt_sep',
   \ ]
 
   let s:cache = {}
@@ -204,6 +206,8 @@ function! s:budgetTiny()
   let g:airline_mode_map = g:airline#extensions#budget#mode_map
   let g:airline_left_sep = ''
   let g:airline_right_sep = ''
+  let g:airline_right_alt_sep = '|'
+  let g:airline_left_alt_sep = '|'
   let g:budget_airline_spc_p = ''
   :AirlineRefresh
 endfunction
@@ -214,7 +218,7 @@ function! s:budgetSlim()
   call s:set_airline_sections()
   let g:airline_symbols.space = ''
   let g:airline_mode_map = g:airline#extensions#budget#mode_map
-  let g:budget_airline_spc_p = s:cache.symbols_space
+  let g:budget_airline_spc_p = ''
   :AirlineRefresh
 endfunction
 
