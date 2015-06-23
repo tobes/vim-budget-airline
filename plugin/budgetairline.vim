@@ -239,6 +239,7 @@ endfunction
 function! s:budgetEnable()
   let s:enabled = 1
   let s:budget_airline_last_mode = -1
+  let s:width_last = -1
   call s:resize()
 endfunction
 
