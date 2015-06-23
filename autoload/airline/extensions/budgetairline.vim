@@ -12,3 +12,6 @@ endfunction
 function! airline#extensions#budgetairline#budgetmode()
   return g:budget_airline_mode
 endfunction
+
+
+" vim: et ts=2 sts=2 sw=2
