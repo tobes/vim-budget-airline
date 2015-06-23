@@ -3,7 +3,7 @@
 " vim: et ts=2 sts=2 sw=2
 
 " check airline extension is loaded
-if !exists('g:airline_loaded')
+if !exists('g:loaded_airline')
   finish
 endif
 
