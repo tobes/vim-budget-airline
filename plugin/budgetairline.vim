@@ -105,13 +105,16 @@ if has("autocmd")
   augroup BudgetAirlineAutoCmds
     autocmd!
     autocmd VimEnter * call s:initialize()
+
     autocmd VimResized * call s:resize()
-    " resize doesn't always get proper screen size
-    " so check more often if update needed
     autocmd CursorHold * call s:resize()
     autocmd CursorHoldI * call s:resize()
     autocmd InsertEnter * call s:resize()
     autocmd InsertLeave * call s:resize()
+    autocmd WinEnter * call s:resize()
+    autocmd TabEnter * call s:resize()
+    autocmd BufWinEnter * call s:resize()
+    autocmd BufEnter * call s:resize()
   augroup END
 endif
 
