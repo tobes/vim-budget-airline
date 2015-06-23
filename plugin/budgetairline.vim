@@ -107,16 +107,7 @@ if has("autocmd")
   augroup BudgetAirlineAutoCmds
     autocmd!
     autocmd VimEnter * call s:initialize()
-
-    autocmd VimResized * call s:resize()
-    autocmd CursorHold * call s:resize()
-    autocmd CursorHoldI * call s:resize()
-    autocmd InsertEnter * call s:resize()
-    autocmd InsertLeave * call s:resize()
-    autocmd WinEnter * call s:resize()
-    autocmd TabEnter * call s:resize()
-    autocmd BufWinEnter * call s:resize()
-    autocmd BufEnter * call s:resize()
+    autocmd User BudgetAirlineRefresh call s:resize()
   augroup END
 endif
 
@@ -162,22 +153,14 @@ endfunction
 
 
 function! s:set_airline_sections()
-  if g:budget_airline_mode == 0
-    " restore airline sections
-    for section in s:section_names
-      let g:{'airline_section_' . section} = s:cache[section]
+  for section in s:section_names
+    let l:data = s:sections[section]
+    " perform substitutions for raw strings
+    for sub in keys(s:subs)
+      let l:data = substitute(l:data, sub, s:subs[sub][g:budget_airline_mode], 'g')
     endfor
-  else
-    " use our amended sections
-    for section in s:section_names
-      let l:data = s:sections[section]
-      " perform substitutions for raw strings
-      for sub in keys(s:subs)
-        let l:data = substitute(l:data, sub, s:subs[sub][g:budget_airline_mode], 'g')
-      endfor
-      let g:{'airline_section_' . section} = l:data
-    endfor
-  endif
+    let g:{'airline_section_' . section} = l:data
+  endfor
 endfunction
 
 
@@ -195,7 +178,8 @@ function! s:process_section(section)
   for item in s:substituions
     let l:section = substitute(l:section, item[0], item[1], 'g')
   endfor
-  return l:section
+  " add our trigger for window size changes
+  return '%{airline#extensions#budgetairline#trigger()}' . l:section
 endfunction
 
 
@@ -251,6 +235,10 @@ function! s:budgetDisable()
   let s:enabled = 0
   let g:budget_airline_mode = 0
   call s:budgetRemove()
+  " restore airline sections
+  for section in s:section_names
+    let g:{'airline_section_' . section} = s:cache[section]
+  endfor
 endfunction
 
 
