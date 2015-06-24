@@ -3,10 +3,14 @@
 An even cheaper way to fly
 
 
-I really like the [vim-airway](https://github.com/bling/vim-airline) vim
-plugin, but often I'm using narrow windows for coding and so information ends
-up hidden.  By having the information more compact at smaller window sizes less
-is lost, but still allow looking totally swish on a wider window.
+I really like the
+[vim-airway](https://github.com/bling/vim-airline) vim
+plugin, but often I'm using narrow windows for coding and so
+information ends up hidden.  By having the information more
+compact at smaller window sizes less is lost, but still
+allow looking totally swish on a wider window.  This plugin
+dynamically saves space as and when need.
+
 
 This is how we save space on our budget:
 
