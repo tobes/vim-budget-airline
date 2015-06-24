@@ -89,7 +89,7 @@ function! s:initialize()
 
   for section in s:section_names
     let s:cache[section] = g:{'airline_section_' . section}
-    let s:sections[section] = s:process_section(s:cache[section])
+    let s:sections[section] = s:process_section(section)
   endfor
 
   let g:budget_airline_spc_p = g:airline_symbols.space
@@ -174,12 +174,15 @@ endfunction
 
 
 function! s:process_section(section)
-  let l:section = a:section
+  let l:section = s:cache[a:section]
   for item in s:substituions
     let l:section = substitute(l:section, item[0], item[1], 'g')
   endfor
   " add our trigger for window size changes
-  return '%{airline#extensions#budgetairline#trigger()}' . l:section
+  if a:section == 'a'
+    return '%{airline#extensions#budgetairline#trigger()}' . l:section
+  endif
+    return l:section
 endfunction
 
 
